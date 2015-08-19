@@ -1,0 +1,42 @@
+<div class="head">
+  <h2>My Shopping Bag</h2>
+  <h2 class="right">Order Total: {{total | currency}}</h2>
+</div>
+<table>
+  <thead>
+    <tr>
+      <th>
+        Product
+      </th>
+      <th>
+        Quantity
+      </th>
+      <th>
+        Sub-total
+      </th>
+      <th>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="item in cart track by $index">
+      <td>
+        <div><h3>{{item.name}}</h3></div>
+        <div><img src={{item.imageUrl}} alt="Tea Image" /></div>
+        <div><strong>Caffeine Scale: </strong><span>{{item.caffeineScale}}</span></div>
+        <div><strong>Ingredients: </strong><span>{{item.ingredients}}</span></div>
+        <div><strong>Rating: </strong><span>{{item.rating}}</span></div>
+      </td>
+      <td>
+        <span>{{item.quantity}}</span>
+      </td>
+      <td>
+        <span>{{item.quantity * (item.price * .01) | currency}}</span>
+      </td>
+      <td>
+        <button class='orange' type="button" name="button" ng-click="editQty()">Edit</button>
+        <button class='red' type="button" name="button" ng-click="removeItem()">Remove</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
