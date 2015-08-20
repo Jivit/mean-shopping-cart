@@ -1,4 +1,4 @@
-var app = angular.module("shoppingCart", ['ngRoute', 'ngAnimate']);
+var app = angular.module("shoppingCart", ['ngRoute', 'ngAnimate', 'ngCookies']);
 
 app.config(['$routeProvider', function ($routeProvider) {
   $routeProvider

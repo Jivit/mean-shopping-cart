@@ -1,7 +1,10 @@
 app.factory('ShoppingCart', function () {
   var ShoppingCart = {};
   var ShoppingCart.shoppingCart = [];
-
+  
+  ShoppingCart.getCart = function () {
+    $http.get('/carts/'+userCart);
+  }
   ShoppingCart.newCart = function () {
     //TODO create cookie here?
   }
@@ -21,4 +24,4 @@ app.factory('ShoppingCart', function () {
   return ShoppingCart;
 })
 
-app.factory('')
+app.factory('');
