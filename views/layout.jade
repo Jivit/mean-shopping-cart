@@ -1,28 +1,8 @@
 doctype html
-html(ng-app='shoppingCart')
+html
   head
     meta(charset='utf-8')
     title MEAN Tea!
     link(rel='stylesheet', href='/stylesheets/style.css')
-    script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.min.js')
-    script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular-route.min.js')
-    script(src='https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.4/angular-animate.min.js')
-    script(src='/javascripts/app.js')
-    script(src='/javascripts/controllers.js')
-    script(src='/javascripts/directives.js')
-    script(src='/javascripts/filters.js')
-    script(src='/javascripts/services.js')
   body
-    header
-      .container
-        .banner
-          | Guaranteed Awesome
-        h1 Welcome to MEAN Tea!
-        .navbar
-          a(href='#/') Home
-          a(href='#/') About
-          a(href='#/') Contact
-    main
-      .container(ng-view='')
-    footer
-      .container
+    block content
