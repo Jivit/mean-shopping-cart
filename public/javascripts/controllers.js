@@ -46,6 +46,7 @@ app.controller('HomeController', ['$scope', '$location', '$http', '$cookies', fu
 }]);
 
 app.controller('CartController', ['$scope', '$http', '$cookies', function ($scope, $http, $cookies) {
+  $scope.qtyForm = false;
   $http.get('/carts/' + $cookies.get('cart_id')).then(function (cart) {
     return Promise.all(cart.data.items.map(function (item) {
       return $http.get('/teas/' + item.item_id);
@@ -80,6 +81,9 @@ app.controller('CartController', ['$scope', '$http', '$cookies', function ($scop
     $http.post('/carts/' + $cookies.get("cart_id") + '/removeitem', {updatedCart})
   }
   $scope.editQty = function () {
-    console.log('you should probably write some code here...');
+    this.qtyForm = !this.qtyForm;
+  }
+  $scope.updateQty = function () {
+
   }
 }]);

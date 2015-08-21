@@ -28,13 +28,15 @@
         <div><strong>Rating: </strong><span>{{item.info.rating}}</span></div>
       </td>
       <td>
-        <span>{{item.quantity}}</span>
+        <span ng-hide="qtyForm">{{item.quantity}}</span>
+        <input type="number" name="qty" ng-model='qty' ng-show="qtyForm" value='{{item.quantity}}'>
       </td>
       <td>
         <span>{{item.quantity * (item.info.price * .01) | currency}}</span>
       </td>
       <td>
-        <button class='orange' type="button" name="button" ng-click="editQty()">Edit</button>
+        <button class='orange' type="button" name="button" ng-hide="qtyForm" ng-click="editQty()">Edit</button>
+        <button class='orange' type="button" name="button" ng-show="qtyForm" ng-click="updateQty()">Update</button>
         <button class='red' type="button" name="button" ng-click="removeItem()">Remove</button>
       </td>
     </tr>
