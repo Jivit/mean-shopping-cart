@@ -47,22 +47,31 @@ app.controller('HomeController', ['$scope', '$location', '$http', '$cookies', fu
 
 app.controller('CartController', ['$scope', '$http', '$cookies', function ($scope, $http, $cookies) {
   $http.get('/carts/' + $cookies.get('cart_id')).then(function (cart) {
-    $scope.cart = cart.data;
-    Promise.all($scope.cart.items.map(function (item) {
+    return Promise.all(cart.data.items.map(function (item) {
       return $http.get('/teas/' + item.item_id);
     })).then(function (items) {
       items = items.map(function (item) {
-        return item.data;
+        for (var i = 0; i < cart.data.items.length; i++) {
+          if (cart.data.items[i].item_id === item.data._id){
+            cart.data.items[i].info = item.data;
+            return cart.data.items[i];
+          }
+        }
       })
-      $scope.cart.lineitems = items;
-      console.log($scope.cart);
-      $scope.total = $scope.cart.items.reduce(function (prev, curr) {
-        return ((curr.price * 0.01) * curr.quantity) + prev;
+      cart = items;
+      total = items.reduce(function (prev, curr) {
+        return ((curr.info.price * 0.01) * curr.quantity) + prev;
       }, 0);
+      return [cart, total]
     })
   }, function (err) {
     $scope.cart = {};
+  }).then(function (cartData) {
+    $scope.cart = cartData[0]
+    $scope.total = cartData[1]
   })
+  console.log($scope.cart);
+  console.log($scope.total);
   $scope.showEdit = false;
   $scope.removeItem = function () {
     cart.splice(cart.indexOf(this.item), 1);

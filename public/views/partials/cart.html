@@ -19,19 +19,19 @@
     </tr>
   </thead>
   <tbody>
-    <tr ng-repeat="item in cart.items track by $index">
+    <tr ng-repeat="item in cart">
       <td>
-        <div><h3>{{item.name}}</h3></div>
-        <div><img src={{item.imageUrl}} alt="Tea Image" /></div>
-        <div><strong>Caffeine Scale: </strong><span>{{item.caffeineScale}}</span></div>
-        <div><strong>Ingredients: </strong><span>{{item.ingredients}}</span></div>
-        <div><strong>Rating: </strong><span>{{item.rating}}</span></div>
+        <div><h3>{{item.info.name}}</h3></div>
+        <div><img src={{item.info.imageUrl}} alt="Tea Image" /></div>
+        <div><strong>Caffeine Scale: </strong><span>{{item.info.caffeineScale}}</span></div>
+        <div><strong>Ingredients: </strong><span>{{item.info.ingredients}}</span></div>
+        <div><strong>Rating: </strong><span>{{item.info.rating}}</span></div>
       </td>
       <td>
         <span>{{item.quantity}}</span>
       </td>
       <td>
-        <span>{{item.quantity * (item.price * .01) | currency}}</span>
+        <span>{{item.quantity * (item.info.price * .01) | currency}}</span>
       </td>
       <td>
         <button class='orange' type="button" name="button" ng-click="editQty()">Edit</button>
