@@ -5,7 +5,9 @@ var cartSchema = new mongoose.Schema({
   items: Array
 })
 
+var Cart = mongoose.model('Cart', cartSchema);
 
+module.exports = Cart;
 /*
 
 items: [{

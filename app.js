@@ -17,8 +17,8 @@ var app = express();
 app.use(express.static(__dirname + '/public/views'));
 
 // view engine setup
-// app.set('views', path.join(__dirname, 'views'));
-// app.set('view engine', 'jade');
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'jade');
 
 app.set('trust proxy', 1) // trust first proxy
 

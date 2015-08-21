@@ -8,7 +8,7 @@
   </label>
   <button class="right" type="button" name="cart" ng-click="goToCart()">
     Checkout |
-    <ng-pluralize count="cart.length" when="{0: ' Bag Empty! ', 1: ' Bag ({}) ', other: ' Bag ({}) '}"></ng-pluralize>
+    <ng-pluralize count="cart.items.length" when="{0: ' Bag Empty! ', 1: ' Bag ({}) ', other: ' Bag ({}) '}"></ng-pluralize>
   </button>
 </div>
 <table>
