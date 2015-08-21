@@ -14,6 +14,7 @@ router.get('/teas', function (req, res, next) {
   })
 })
 
+//show
 router.get('/teas/:id', function (req, res, next) {
   db.Teas.findById(req.params.id).then(function (tea) {
     res.json(tea);
@@ -43,6 +44,15 @@ router.post('/carts/:id', function (req, res, next) {
   db.Carts.findByIdAndUpdate(req.params.id, {
     user_id: req.body.cart.user_id,
     items: req.body.cart.items
+  }).then(function (cart) {
+    res.json(cart);
+  })
+})
+
+router.post('/carts/:id/removeitem', function (req, res, next) {
+  console.log(req.body.updatedCart);
+  db.Carts.findByIdAndUpdate(req.params.id, {
+    items: req.body.updatedCart
   }).then(function (cart) {
     res.json(cart);
   })

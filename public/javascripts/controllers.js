@@ -70,11 +70,14 @@ app.controller('CartController', ['$scope', '$http', '$cookies', function ($scop
     $scope.cart = cartData[0]
     $scope.total = cartData[1]
   })
-  console.log($scope.cart);
-  console.log($scope.total);
   $scope.showEdit = false;
   $scope.removeItem = function () {
-    cart.splice(cart.indexOf(this.item), 1);
+    $scope.total = $scope.total - (this.item.quantity * this.item.info.price * .01);
+    $scope.cart.splice($scope.cart.indexOf(this.item), 1);
+    var updatedCart = $scope.cart.map(function (e) {
+      return {item_id: e.item_id, quantity: Number(e.quantity)};
+    });
+    $http.post('/carts/' + $cookies.get("cart_id") + '/removeitem', {updatedCart})
   }
   $scope.editQty = function () {
     console.log('you should probably write some code here...');
