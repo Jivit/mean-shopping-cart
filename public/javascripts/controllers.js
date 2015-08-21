@@ -29,7 +29,7 @@ app.controller('HomeController', ['$scope', '$location', '$http', '$cookies', fu
         var tmp = true;
         cart.data.items.forEach(function (e) {
           if (e.item_id === item.item_id) {
-            e.quantity += item.quantity
+            e.quantity += Number(item.quantity);
             tmp = false;
           }
         })
