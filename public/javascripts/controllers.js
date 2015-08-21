@@ -26,7 +26,16 @@ app.controller('HomeController', ['$scope', '$location', '$http', '$cookies', fu
     if($cookies.get('cart_id')) {
       //use existing cart if it exists
       $http.get('/carts/' + $cookies.get('cart_id')).then(function (cart) {
-        cart.data.items.push(item);
+        var tmp = true;
+        cart.data.items.forEach(function (e) {
+          if (e.item_id === item.item_id) {
+            e.quantity += item.quantity
+            tmp = false;
+          }
+        })
+        if (tmp === true){
+          cart.data.items.push(item);
+        }
         return cart.data;
       }).then(function (cart) {
         return $http.post('/carts/'+cart._id, {cart});
@@ -78,12 +87,21 @@ app.controller('CartController', ['$scope', '$http', '$cookies', function ($scop
     var updatedCart = $scope.cart.map(function (e) {
       return {item_id: e.item_id, quantity: Number(e.quantity)};
     });
-    $http.post('/carts/' + $cookies.get("cart_id") + '/removeitem', {updatedCart})
+    $http.post('/carts/' + $cookies.get("cart_id") + '/updateitem', {updatedCart})
   }
   $scope.editQty = function () {
     this.qtyForm = !this.qtyForm;
   }
   $scope.updateQty = function () {
-
+    console.log(this.qty);
+    $scope.total = $scope.total - (this.item.quantity * this.item.info.price * .01) + (this.qty * this.item.info.price * .01);
+    this.item.quantity = this.qty;
+    console.log($scope.cart);
+    var updatedCart = $scope.cart.map(function (e) {
+      return {item_id: e.item_id, quantity: Number(e.quantity)};
+    });
+    console.log(updatedCart);
+    $http.post('/carts/' + $cookies.get("cart_id") + '/updateitem', {updatedCart})
+    this.qtyForm = !this.qtyForm;
   }
 }]);
