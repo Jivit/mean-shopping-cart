@@ -45,14 +45,25 @@ app.controller('HomeController', ['$scope', '$location', '$http', '$cookies', fu
   }
 }]);
 
-app.controller('CartController', ['$scope', function ($scope) {
+app.controller('CartController', ['$scope', '$http', '$cookies', function ($scope, $http, $cookies) {
   $http.get('/carts/' + $cookies.get('cart_id')).then(function (cart) {
     $scope.cart = cart.data;
+    Promise.all($scope.cart.items.map(function (item) {
+      return $http.get('/teas/' + item.item_id);
+    })).then(function (items) {
+      items = items.map(function (item) {
+        return item.data;
+      })
+      $scope.cart.lineitems = items;
+      console.log($scope.cart);
+      $scope.total = $scope.cart.items.reduce(function (prev, curr) {
+        return ((curr.price * 0.01) * curr.quantity) + prev;
+      }, 0);
+    })
+  }, function (err) {
+    $scope.cart = {};
   })
   $scope.showEdit = false;
-  $scope.total = cart.reduce(function (prev, curr) {
-    return ((curr.price * 0.01) * curr.quantity) + prev;
-  }, 0);
   $scope.removeItem = function () {
     cart.splice(cart.indexOf(this.item), 1);
   }

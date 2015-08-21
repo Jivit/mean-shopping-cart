@@ -14,6 +14,13 @@ router.get('/teas', function (req, res, next) {
   })
 })
 
+router.get('/teas/:id', function (req, res, next) {
+  db.Teas.findById(req.params.id).then(function (tea) {
+    res.json(tea);
+  })
+})
+
+
 //show
 router.get('/carts/:id', function (req, res, next) {
   db.Carts.findById(req.params.id).then(function (cart) {

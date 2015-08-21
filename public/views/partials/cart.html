@@ -19,7 +19,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr ng-repeat="item in cart track by $index">
+    <tr ng-repeat="item in cart.items track by $index">
       <td>
         <div><h3>{{item.name}}</h3></div>
         <div><img src={{item.imageUrl}} alt="Tea Image" /></div>
