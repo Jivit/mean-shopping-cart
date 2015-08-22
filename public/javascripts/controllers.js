@@ -1,14 +1,9 @@
-app.controller('HomeController', ['$scope', '$location', '$http', '$cookies', function ($scope, $location, $http, $cookies) {
-  $http.get('/teas').then(function (results) {
-    $scope.teas = results.data;
-    $scope.categories = results.data.reduce(function (prev, curr) {
-      return prev.concat(curr.categories);
-    }, []).filter(function(category, i, arr) {
-      return arr.indexOf(category) == i;
-    })
-  }, function (err) {
-    console.log(err);
+app.controller('HomeController', ['$scope', '$location', '$http', '$cookies', 'TeasHelper', function ($scope, $location, $http, $cookies, TeasHelper) {
+  TeasHelper.getTeas().then(function (teaData) {
+    $scope.teas = teaData[0];
+    $scope.categories = teaData[1];
   });
+
   if($cookies.get('cart_id')){
     $http.get('/carts/' + $cookies.get('cart_id')).then(function (cart) {
       $scope.cart = cart.data;

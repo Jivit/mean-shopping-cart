@@ -23,5 +23,23 @@
 //
 //   return ShoppingCart;
 // })
-//
-// app.factory('');
+
+app.factory('TeasHelper', ['$http', function ($http) {
+  var Teas = {};
+
+  Teas.getTeas = function () {
+    return $http.get('/teas').then(function (results) {
+      teas = results.data;
+      categories = results.data.reduce(function (prev, curr) {
+        return prev.concat(curr.categories);
+      }, []).filter(function(category, i, arr) {
+        return arr.indexOf(category) == i;
+      })
+      return [teas, categories];
+    }, function (err) {
+      return err;
+    });
+  }
+
+  return Teas;
+}]);
