@@ -50,7 +50,6 @@ router.post('/carts/:id', function (req, res, next) {
 })
 
 router.post('/carts/:id/updateitem', function (req, res, next) {
-  console.log(req.body.updatedCart);
   db.Carts.findByIdAndUpdate(req.params.id, {
     items: req.body.updatedCart
   }).then(function (cart) {

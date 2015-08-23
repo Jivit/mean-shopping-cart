@@ -3,11 +3,11 @@ var app = angular.module("shoppingCart", ['ngRoute', 'ngAnimate', 'ngCookies']);
 app.config(['$routeProvider', function ($routeProvider) {
   $routeProvider
     .when('/', {
-      templateUrl: '/partials/home.html',
+      templateUrl: '/views/partials/home.html',
       controller: 'HomeController'
     })
     .when('/cart', {
-      templateUrl: '/partials/cart.html',
+      templateUrl: '/views/partials/cart.html',
       controller: 'CartController'
     })
     .otherwise({redirectTo: '/'});
