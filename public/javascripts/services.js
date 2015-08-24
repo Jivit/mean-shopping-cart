@@ -71,7 +71,7 @@ app.factory('ShoppingCart', ['$http', '$cookies', function ($http, $cookies) {
         return [cart, total];
       })
     }, function (err) {
-      return {};
+      return err;
     }).then(function (cartData) {
       return cartData;
     })
