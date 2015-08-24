@@ -12,6 +12,6 @@ var teaSchema = new mongoose.Schema({
   categories: Array
 });
 
-var Tea = mongoose.model('Tea', teaSchema);
+var Tea = mongoose.model('Tea', teaSchema, 'teas');
 
 module.exports = Tea;
