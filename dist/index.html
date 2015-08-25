@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html ng-app="shoppingCart">
+  <head>
+    <meta charset="utf-8">
+    <title>MEAN Tea!</title>
+    <link rel="stylesheet" href="./../stylesheets/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular-route.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.4/angular-animate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.4/angular-cookies.min.js"></script>
+    <script src="./../javascripts/app.js"></script>
+    <script src="./../javascripts/controllers.js"></script>
+    <script src="./../javascripts/directives.js"></script>
+    <script src="./../javascripts/filters.js"></script>
+    <script src="./../javascripts/services.js"></script>
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <div class="banner">
+          Guaranteed Awesome
+        </div>
+        <h1>Welcome to MEAN Tea!</h1>
+        <div class="navbar">
+          <a href="#/">Home</a>
+          <a href="#/">About</a>
+          <a href="#/">Contact</a>
+        </div>
+      </div>
+    </header>
+    <main>
+      <div class="container" ng-view>
+      </div>
+    </main>
+    <footer>
+      <div class="container">
+
+      </div>
+    </footer>
+  </body>
+</html>

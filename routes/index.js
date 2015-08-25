@@ -16,9 +16,7 @@ router.get('/teas', function (req, res, next) {
 
 //show
 router.get('/teas/:id', function (req, res, next) {
-  console.log(req.params.id);
   db.Teas.findById(req.params.id).then(function (tea) {
-    console.log(tea);
     res.json(tea);
   })
 })
@@ -59,5 +57,4 @@ router.post('/carts/:id/updateitem', function (req, res, next) {
   })
 })
 
-router.get('/')
 module.exports = router;
